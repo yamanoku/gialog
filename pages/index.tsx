@@ -12,6 +12,7 @@ type Issue = any;
 const Home: NextPage<Props> = ({ issues }) => {
   return (
     <>
+      <h1>yama-gialog</h1>
       {issues.map((issue) => (
         <article key={issue.number}>
           <p>
