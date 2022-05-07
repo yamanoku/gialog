@@ -1,0 +1,19 @@
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: var(--y-rhythm-2) 0;
+  text-decoration: none;
+}
+
+.svg {
+  width: 48px;
+  height: 48px;
+  vertical-align: middle;
+}
+
+.path {
+  transform: translate(-64px, -67px);
+  fill: #36465d;
+  fill-rule: evenodd;
+}
