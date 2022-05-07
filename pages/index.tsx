@@ -11,16 +11,18 @@ type Issue = any;
 
 const Home: NextPage<Props> = ({ issues }) => {
   return (
-    <section>
-      <ol>
-        {issues.map((issue) => (
-          <li key={issue.number}>
+    <>
+      {issues.map((issue) => (
+        <article key={issue.number}>
+          <p>
             <Time dateTime={issue.created_at} />
+          </p>
+          <h2>
             <Link href={`/articles/${issue.number}`}>{issue.title}</Link>
-          </li>
-        ))}
-      </ol>
-    </section>
+          </h2>
+        </article>
+      ))}
+    </>
   );
 };
 

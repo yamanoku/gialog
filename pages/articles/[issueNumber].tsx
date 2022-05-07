@@ -17,32 +17,27 @@ type Props = {
 const ShowArticle: NextPage<Props> = ({ issue, issueComments }) => {
   return (
     <article>
-      <section>
-        <header>
-          <Time dateTime={issue.created_at} />
-          <h1>{issue.title}</h1>
-        </header>
-        <aside>
-          <p>
-            Posted by&nbsp;
-            <Link href={issue.user.html_url}>{issue.user.login}</Link>
-            &nbsp;at&nbsp;
-            <Link href={issue.html_url}>{`#${issue.number}`}</Link>.
-          </p>
-        </aside>
-        <div dangerouslySetInnerHTML={{ __html: issue.bodyHTML }}></div>
-      </section>
+      <h1>{issue.title}</h1>
+      <p>
+        <Time dateTime={issue.created_at} />
+      </p>
+      <address>
+        Posted by&nbsp;
+        <Link href={issue.user.html_url}>{issue.user.login}</Link>
+        &nbsp;at&nbsp;
+        <Link href={issue.html_url}>{`#${issue.number}`}</Link>.
+      </address>
+      <div dangerouslySetInnerHTML={{ __html: issue.bodyHTML }}></div>
       {issueComments.map((issueComment) => (
-        <article key={issueComment.id}>
-          <section>
-            <header>
-              <Time dateTime={issueComment.created_at} />
-            </header>
+        <>
+          <hr />
+          <div key={issueComment.id}>
+            <Time dateTime={issueComment.created_at} />
             <div
               dangerouslySetInnerHTML={{ __html: issueComment.bodyHTML }}
             ></div>
-          </section>
-        </article>
+          </div>
+        </>
       ))}
     </article>
   );

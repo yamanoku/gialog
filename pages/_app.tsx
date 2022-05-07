@@ -1,12 +1,18 @@
-import "../styles/globals.css";
+import "yama-normalize";
 import type { AppProps } from "next/app";
 import Layout from "../components/Layout";
+import Head from "next/head";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <Layout>
-      <Component {...pageProps} />
-    </Layout>
+    <>
+      <Head>
+        <title>yama-gialog</title>
+      </Head>
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
+    </>
   );
 }
 
