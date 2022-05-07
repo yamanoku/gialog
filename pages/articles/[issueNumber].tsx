@@ -8,6 +8,7 @@ import {
   type IssueComment,
 } from "../../lib/issue";
 import Time from "../../components/Time";
+import Head from "next/head";
 
 type Props = {
   issue: Issue;
@@ -16,30 +17,35 @@ type Props = {
 
 const ShowArticle: NextPage<Props> = ({ issue, issueComments }) => {
   return (
-    <article>
-      <h1>{issue.title}</h1>
-      <p>
-        <Time dateTime={issue.created_at} />
-      </p>
-      <address>
-        Posted by&nbsp;
-        <Link href={issue.user.html_url}>{issue.user.login}</Link>
-        &nbsp;at&nbsp;
-        <Link href={issue.html_url}>{`#${issue.number}`}</Link>.
-      </address>
-      <div dangerouslySetInnerHTML={{ __html: issue.bodyHTML }}></div>
-      {issueComments.map((issueComment) => (
-        <>
-          <hr />
-          <div key={issueComment.id}>
-            <Time dateTime={issueComment.created_at} />
-            <div
-              dangerouslySetInnerHTML={{ __html: issueComment.bodyHTML }}
-            ></div>
-          </div>
-        </>
-      ))}
-    </article>
+    <>
+      <Head>
+        <title>{issue.title} | yama-gialog</title>
+      </Head>
+      <article>
+        <h1>{issue.title}</h1>
+        <p>
+          <Time dateTime={issue.created_at} />
+        </p>
+        <address>
+          Posted by&nbsp;
+          <Link href={issue.user.html_url}>{issue.user.login}</Link>
+          &nbsp;at&nbsp;
+          <Link href={issue.html_url}>{`#${issue.number}`}</Link>.
+        </address>
+        <div dangerouslySetInnerHTML={{ __html: issue.bodyHTML }}></div>
+        {issueComments.map((issueComment) => (
+          <>
+            <hr />
+            <div key={issueComment.id}>
+              <Time dateTime={issueComment.created_at} />
+              <div
+                dangerouslySetInnerHTML={{ __html: issueComment.bodyHTML }}
+              ></div>
+            </div>
+          </>
+        ))}
+      </article>
+    </>
   );
 };
 
